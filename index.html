@@ -46,7 +46,7 @@
         -webkit-font-smoothing: antialiased;
     }
 
-    /* --- LIQUID GLASS NAVBAR STYLES --- */
+    /* --- GLASSMORPHISM NAVBAR STYLES --- */
     .nav-wrapper {
         position: fixed;
         top: 20px;
@@ -58,67 +58,36 @@
         padding: 0 20px;
     }
 
-    .liquid-nav-container {
+    .glass-nav-container {
         position: relative;
         width: 100%;
         max-width: 900px;
-        height: 64px; /* Fixed height for distortion calculation */
+        height: 64px;
         border-radius: 100px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        /* Deep shadow to emphasize "floating" object */
-        box-shadow: 0 10px 40px rgba(0,0,0,0.5), 0 0 20px rgba(255,255,255,0.05);
-        transition: transform 0.3s ease;
-    }
-
-    .liquid-nav-container:hover {
-        transform: scale(1.01);
-    }
-
-    .liquid-layer {
-        position: absolute;
-        inset: 0;
-        border-radius: 100px;
-        pointer-events: none; /* Let clicks pass through effects */
-    }
-
-    /* Layer 1: The Distortion Effect */
-    .layer-effect {
-        z-index: 0;
-        backdrop-filter: blur(4px);
-        filter: url(#glass-distortion);
-        overflow: hidden;
-    }
-
-    /* Layer 2: The White Tint */
-    .layer-tint {
-        z-index: 1;
-        background: rgba(255, 255, 255, 0.08);
-    }
-
-    /* Layer 3: The Shine/Borders */
-    .layer-shine {
-        z-index: 2;
-        box-shadow: 
-            inset 2px 2px 1px 0 rgba(255, 255, 255, 0.2),
-            inset -1px -1px 1px 1px rgba(255, 255, 255, 0.1);
-    }
-
-    /* Layer 4: The Actual Content */
-    .nav-content {
-        z-index: 3;
-        position: relative;
-        width: 100%;
-        height: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 24px;
+        padding: 0 8px 0 24px; /* Right padding smaller for button */
+        
+        /* The Glass Effect */
+        background: rgba(20, 20, 25, 0.65); /* Semi-transparent dark base */
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle white border */
+        box-shadow: 
+            0 4px 30px rgba(0, 0, 0, 0.5), /* Deep shadow */
+            inset 0 1px 0 rgba(255, 255, 255, 0.15); /* Top inner shine */
+            
+        transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .glass-nav-container:hover {
+        transform: translateY(-2px);
+        background: rgba(20, 20, 25, 0.75);
     }
 
     /* Logo Area */
-    .nav-left { display: flex; align-items: center; gap: 30px; }
+    .nav-left { display: flex; align-items: center; }
     .nav-brand {
         font-weight: 700;
         font-size: 1.1rem;
@@ -127,8 +96,6 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        margin-left: 0;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Better contrast on glass */
     }
 
     /* Modern Small Button */
@@ -137,13 +104,16 @@
         color: black;
         font-weight: 600;
         font-size: 0.9rem;
-        padding: 8px 20px;
+        padding: 10px 24px;
         border-radius: 100px;
         text-decoration: none;
-        transition: transform 0.2s;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
-    .btn-nav-small:hover { transform: scale(1.05); }
+    .btn-nav-small:hover { 
+        transform: scale(1.03); 
+        box-shadow: 0 4px 15px rgba(255,255,255,0.2);
+    }
 
     /* --- Hero --- */
     .hero {
@@ -323,24 +293,6 @@
 </head>
 <body>
 
-<!-- SVG FILTER (The magic sauce for Liquid Glass) -->
-<svg style="display: none">
-    <filter id="glass-distortion" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
-        <feTurbulence type="fractalNoise" baseFrequency="0.01 0.01" numOctaves="1" seed="5" result="turbulence" />
-        <feComponentTransfer in="turbulence" result="mapped">
-            <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
-            <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
-            <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
-        </feComponentTransfer>
-        <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
-        <feSpecularLighting in="softMap" surfaceScale="5" specularConstant="1" specularExponent="100" lighting-color="white" result="specLight">
-            <fePointLight x="-200" y="-200" z="300" />
-        </feSpecularLighting>
-        <feComposite in="specLight" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litImage" />
-        <feDisplacementMap in="SourceGraphic" in2="softMap" scale="150" xChannelSelector="R" yChannelSelector="G" />
-    </filter>
-</svg>
-
 <!-- Structured Data for SEO -->
 <script type="application/ld+json">
 {
@@ -369,21 +321,13 @@
     });
 </script>
 
-<!-- LIQUID GLASS NAVBAR -->
+<!-- CLEAN GLASS NAVBAR -->
 <div class="nav-wrapper">
-    <div class="liquid-nav-container">
-        <!-- Liquid Layers -->
-        <div class="liquid-layer layer-effect"></div>
-        <div class="liquid-layer layer-tint"></div>
-        <div class="liquid-layer layer-shine"></div>
-        
-        <!-- Content Layer -->
-        <div class="nav-content">
-            <div class="nav-left">
-                <a href="https://incandescent-gnome-e84ac4.netlify.app" class="nav-brand">Bicochat</a>
-            </div>
-            <a href="https://incandescent-gnome-e84ac4.netlify.app" class="btn-nav-small">Launch App</a>
+    <div class="glass-nav-container">
+        <div class="nav-left">
+            <a href="https://incandescent-gnome-e84ac4.netlify.app" class="nav-brand">Bicochat</a>
         </div>
+        <a href="https://incandescent-gnome-e84ac4.netlify.app" class="btn-nav-small">Launch App</a>
     </div>
 </div>
 
