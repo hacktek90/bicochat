@@ -4,24 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BicoChat</title>
-<meta name="description" content="Chat instantly in English & Spanish with BicoChat — the world’s fastest AI response time (0.28s avg). Free, no sign-up, bilingual AI assistant for learning, coding, and more.">
+<meta name="description" content="Chat instantly in English & Spanish with BicoChat — the world's fastest AI response time (0.28s avg). Free, no sign-up, bilingual AI assistant for learning, coding, and more.">
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://incandescent-gnome-e84ac4.netlify.app/" />
-<meta property="og:title" content="BicoChat — World’s Fastest Bilingual AI Chat Assistant" />
-<meta property="og:description" content="Chat instantly in English & Spanish with BicoChat — the world’s fastest AI response time (0.28s avg). Free, no sign-up, bilingual AI assistant." />
+<meta property="og:title" content="BicoChat — World's Fastest Bilingual AI Chat Assistant" />
+<meta property="og:description" content="Chat instantly in English & Spanish with BicoChat — the world's fastest AI response time (0.28s avg). Free, no sign-up, bilingual AI assistant." />
 <meta property="og:image" content="https://black-ice-3dbk.onrender.com/bicochat-og.jpg" />
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content="https://incandescent-gnome-e84ac4.netlify.app/" />
-<meta property="twitter:title" content="BicoChat — World’s Fastest Bilingual AI Chat Assistant" />
-<meta property="twitter:description" content="Chat instantly in English & Spanish with BicoChat — the world’s fastest AI response time (0.28s avg)." />
+<meta property="twitter:title" content="BicoChat — World's Fastest Bilingual AI Chat Assistant" />
+<meta property="twitter:description" content="Chat instantly in English & Spanish with BicoChat — the world's fastest AI response time (0.28s avg)." />
 <meta property="twitter:image" content="https://black-ice-3dbk.onrender.com/bicochat-og.jpg" />
 <!-- Canonical URL -->
 <link rel="canonical" href="https://black-ice-3dbk.onrender.com/ai-chat.html" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
     :root {
         /* Deep Tech Palette */
@@ -256,7 +256,8 @@
         top: 0; left: 0; right: 0; height: 1px;
         background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
     }
-    /* Footer */
+    
+    /* === MEGA FOOTER (Mobile-Inspired Style) === */
     footer {
         padding: 80px 0 0;
         border-top: 1px solid var(--border-subtle);
@@ -264,20 +265,22 @@
         overflow: hidden;
         position: relative;
     }
-    .big-footer-text {
-        font-weight: 800;
-        font-size: 24vw;
-        line-height: 0.75;
-        letter-spacing: -0.08em;
-        background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.02) 100%);
+    
+    .mega-text {
+        font-weight: 900;
+        font-size: 22vw; /* Same as mobile */
+        line-height: 0.8;
+        letter-spacing: -0.05em;
+        background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.0) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         user-select: none;
         pointer-events: none;
         width: 100%;
         display: block;
-        margin-bottom: -4vw;
+        margin-bottom: -20px;
     }
+    
     /* Animation Keyframes */
     @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     @keyframes pulse-glow { 0% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(139, 92, 246, 0); } 100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); } }
@@ -306,7 +309,7 @@
         "price": "0",
         "priceCurrency": "USD"
     },
-    "description": "World’s fastest bilingual AI chat assistant with 0.28s average response time. Supports English and Spanish with no sign-up required.",
+    "description": "World's fastest bilingual AI chat assistant with 0.28s average response time. Supports English and Spanish with no sign-up required.",
     "url": "https://black-ice-3dbk.onrender.com/ai-chat.html",
     "screenshot": "https://black-ice-3dbk.onrender.com/bicochat-screenshot.jpg"
 }
@@ -492,13 +495,13 @@
     </div>
 </section>
 
-<!-- Updated Footer -->
+<!-- MEGA FOOTER (Mobile Style) -->
 <footer>
     <div class="container">
         <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 60px; position: relative; z-index: 10;">&copy; 2025 Bicochat. Powered by Meta Llama.</p>
     </div>
     <!-- Massive Footer Brand Name -->
-    <div class="big-footer-text">
+    <div class="mega-text">
         Bicochat
     </div>
 </footer>
