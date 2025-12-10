@@ -23,542 +23,291 @@
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://black-ice-3dbk.onrender.com/ai-chat.html" />
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+	 <style>
+        :root {
+            /* Deep Tech Palette */
+            --bg-deep: #030304; 
+            --bg-surface: #0B0B0E;
+            --accent-primary: #3B82F6; 
+            --accent-secondary: #8B5CF6;
+            --text-main: #FFFFFF;
+            --text-muted: #94A3B8;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --gradient-mesh: radial-gradient(circle at 50% -20%, rgba(59, 130, 246, 0.15), transparent 60%);
         }
+
+        * { box-sizing: border-box; outline: none; scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #000;
-            color: #fff;
-            line-height: 1.5;
+            background-color: var(--bg-deep);
+            background-image: var(--gradient-mesh);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Header */
-        header {
-            padding: 30px 0;
-            border-bottom: 4px solid #00ff88;
-        }
-
-        .header-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
+        /* --- Modern Floating Navbar --- */
+        .nav-wrapper {
+            position: fixed;
+            top: 20px;
+            left: 0;
+            width: 100%;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 0 20px;
         }
 
-        .logo {
-            font-size: 32px;
-            font-weight: 900;
-            color: #00ff88;
+        nav {
+            background: rgba(10, 10, 12, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 100px; /* Pill shape */
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 900px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1); /* Inner light */
+            transition: all 0.3s ease;
+        }
+
+        /* Logo Area */
+        .nav-left { display: flex; align-items: center; gap: 30px; }
+        
+        .nav-brand { 
+            font-weight: 700; 
+            font-size: 1.1rem; 
+            color: white; 
+            text-decoration: none; 
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            /* No margin needed since dot is gone */
+            margin-left: 0; 
+        }
+        
+        /* DOT REMOVED: .nav-brand::before rule deleted */
+
+        /* Modern Small Button */
+        .btn-nav-small {
+            background: #FFFFFF;
+            color: black;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 8px 20px;
+            border-radius: 100px;
             text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: -1px;
             transition: transform 0.2s;
         }
+        
+        .btn-nav-small:hover { transform: scale(1.05); }
 
-        .logo:hover {
-            transform: scale(1.05);
-        }
-        footer p:last-child {
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.6;
-    text-transform: none;
-    letter-spacing: 0;
-}
-
-@media (max-width: 768px) {
-    footer p:last-child {
-        font-size: 12px !important;
-        flex-direction: column;
-        gap: 10px;
-    }
-}
-
-
-        .header-cta {
-            padding: 14px 32px;
-            background: #00ff88;
-            color: #000;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 16px;
-            border: 4px solid #00ff88;
-            box-shadow: 6px 6px 0 #fff;
-            transition: all 0.2s;
-            text-transform: uppercase;
-        }
-
-        .header-cta:hover {
-            transform: translate(3px, 3px);
-            box-shadow: 3px 3px 0 #fff;
-        }
-
-        /* World Record Banner */
-        .world-record-banner {
-            background: #00ff88;
-            color: #000;
-            padding: 20px 0;
-            text-align: center;
-            border-top: 4px solid #fff;
-            border-bottom: 4px solid #fff;
-        }
-
-        .world-record-banner p {
-            font-size: 28px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .world-record-banner .trophy {
-            font-size: 32px;
-            margin: 0 10px;
-        }
-
-        /* Hero Section */
+        /* --- Hero --- */
         .hero {
-            padding: 120px 0 100px;
+            padding: 220px 0 120px; 
+            text-align: center;
             position: relative;
-            overflow: hidden;
         }
 
-        .hero-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            padding: 8px 20px;
-            background: #00ff88;
-            color: #000;
-            font-weight: 800;
-            font-size: 14px;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .hero-bg-anim {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            filter: blur(60px);
+            z-index: -1;
+            animation: pulse-glow 8s infinite;
         }
 
         .hero h1 {
-            font-size: 96px;
-            font-weight: 900;
-            line-height: 0.95;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: -3px;
+            font-size: clamp(3rem, 5vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(180deg, #FFFFFF 0%, #A5B4FC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .hero h1 .highlight {
-            color: #00ff88;
-            display: block;
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
         }
 
-        .hero-description {
-            font-size: 24px;
-            color: #999;
-            max-width: 700px;
-            margin-bottom: 50px;
-            line-height: 1.6;
-        }
-
-        .cta-group {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .cta-primary {
-            padding: 24px 48px;
-            background: #00ff88;
-            color: #000;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 20px;
-            border: 4px solid #00ff88;
-            box-shadow: 8px 8px 0 #fff;
-            transition: all 0.2s;
-            text-transform: uppercase;
+        /* Rest of Styles */
+        .pill {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--accent-secondary);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 6px 12px;
+            border-radius: 100px;
             display: inline-block;
+            margin-bottom: 24px;
         }
 
-        .cta-primary:hover {
-            transform: translate(4px, 4px);
-            box-shadow: 4px 4px 0 #fff;
-        }
-
-        .cta-secondary {
-            padding: 24px 48px;
-            background: transparent;
-            color: #fff;
+        .btn-shimmer {
+            background: #FFFFFF;
+            color: #000000;
+            padding: 16px 40px;
+            border-radius: 100px;
+            font-weight: 600;
             text-decoration: none;
-            font-weight: 800;
-            font-size: 20px;
-            border: 4px solid #fff;
-            box-shadow: 8px 8px 0 #00ff88;
-            transition: all 0.2s;
-            text-transform: uppercase;
-            display: inline-block;
-        }
-
-        .cta-secondary:hover {
-            transform: translate(4px, 4px);
-            box-shadow: 4px 4px 0 #00ff88;
-        }
-
-        /* Stats Section */
-        .stats {
-            padding: 80px 0;
-            background: #0a0a0a;
-        }
-
-        .stats-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 60px;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 64px;
-            font-weight: 900;
-            display: block;
-            margin-bottom: 10px;
-            color: #00ff88;
-        }
-
-        .stat-label {
-            font-size: 18px;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: #fff;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 120px 0;
-        }
-
-        .features-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        .section-title {
-            font-size: 72px;
-            font-weight: 900;
-            text-transform: uppercase;
-            margin-bottom: 80px;
-            letter-spacing: -2px;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-        }
-
-        .feature-card {
-            background: #111;
-            padding: 50px;
-            border: 4px solid #222;
-            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 0 20px rgba(255,255,255,0.15);
             position: relative;
+            overflow: hidden;
+            border: 1px solid transparent;
         }
 
-        .feature-card:hover {
-            border-color: #00ff88;
-            transform: translateY(-10px);
+        .btn-shimmer::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+            transform: skewX(-20deg) translateX(-150%);
+            transition: none;
+        }
+        
+        .btn-shimmer:hover::after { animation: shimmer 0.8s ease-in-out; }
+        .btn-shimmer:hover { transform: scale(1.03); box-shadow: 0 0 40px rgba(255,255,255,0.4); }
+        .btn-shimmer span { transition: transform 0.2s; }
+        .btn-shimmer:hover span { transform: translateX(3px); }
+
+        .marquee-section { padding: 40px 0; border-bottom: 1px solid var(--border-subtle); overflow: hidden; background: var(--bg-surface); }
+        .marquee-content { display: flex; gap: 60px; animation: scroll 20s linear infinite; width: max-content; opacity: 0.5; }
+        .marquee-item { font-family: 'JetBrains Mono', monospace; color: var(--text-muted); font-weight: 600; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .features-section { padding: 120px 0; }
+        .section-title { text-align: center; margin-bottom: 80px; }
+        .section-title h2 { font-size: 2.5rem; margin-bottom: 16px; }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 350px);
+            gap: 24px;
         }
 
-        .feature-card::before {
+        .bento-card {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: border-color 0.3s;
+        }
+        .bento-card:hover { border-color: var(--border-active); background: rgba(255, 255, 255, 0.05); }
+        .span-2 { grid-column: span 2; }
+        .span-4 { grid-column: span 4; }
+        
+        .card-visual {
+            height: 150px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            margin-top: 20px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .code-block {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--accent-primary);
+            padding: 16px;
+            opacity: 0.8;
+        }
+
+        .workflow-section { padding: 120px 0; }
+        .timeline-item { display: flex; gap: 40px; margin-bottom: 80px; align-items: flex-start; }
+        .timeline-number { font-size: 4rem; font-weight: 700; color: rgba(255, 255, 255, 0.05); line-height: 1; }
+        .timeline-content h3 { font-size: 1.5rem; margin-bottom: 12px; color: white; }
+        .timeline-content p { color: var(--text-muted); }
+
+        .comparison-section { padding: 100px 0; background: var(--bg-surface); border-top: 1px solid var(--border-subtle); }
+        .comp-table { width: 100%; border-collapse: collapse; margin-top: 40px; }
+        .comp-table th, .comp-table td { text-align: left; padding: 20px; border-bottom: 1px solid var(--border-subtle); }
+        .comp-table th { color: var(--text-muted); font-weight: 500; }
+        .check { color: var(--accent-secondary); }
+        .cross { color: #555; }
+
+        .bottom-cta { text-align: center; padding: 100px 0; }
+        .bottom-card {
+            background: linear-gradient(180deg, var(--bg-surface), var(--bg-deep));
+            padding: 60px;
+            border-radius: 30px;
+            border: 1px solid var(--border-subtle);
+            position: relative;
+            overflow: hidden;
+        }
+        .bottom-card::before {
             content: '';
             position: absolute;
-            top: -4px;
-            left: -4px;
-            right: -4px;
-            bottom: -4px;
-            background: #00ff88;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .feature-card:hover::before {
-            opacity: 0.1;
-        }
-
-        .feature-number {
-            font-size: 120px;
-            font-weight: 900;
-            color: #00ff88;
-            line-height: 1;
-            margin-bottom: 20px;
-            opacity: 0.3;
-        }
-
-        .feature-card h3 {
-            font-size: 28px;
-            font-weight: 800;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-
-        .feature-card p {
-            font-size: 18px;
-            color: #999;
-            line-height: 1.7;
-        }
-
-        /* Use Cases */
-        .use-cases {
-            padding: 120px 0;
-            background: #0a0a0a;
-        }
-
-        .use-cases-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        .use-cases-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 4px;
-            background: #00ff88;
-            border: 4px solid #00ff88;
-        }
-
-        .use-case-item {
-            background: #000;
-            padding: 60px 50px;
-            transition: all 0.3s;
-        }
-
-        .use-case-item:hover {
-            background: #00ff88;
-            color: #000;
-        }
-
-        .use-case-tag {
-            font-size: 14px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .use-case-item h3 {
-            font-size: 32px;
-            font-weight: 900;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-
-        .use-case-item p {
-            font-size: 18px;
-            line-height: 1.6;
-        }
-
-        .use-case-item:hover p {
-            color: #000;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            padding: 150px 0;
-            background: #00ff88;
-            color: #000;
-            text-align: center;
-            border-top: 4px solid #fff;
-            border-bottom: 4px solid #fff;
-        }
-
-        .cta-section-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        .cta-section h2 {
-            font-size: 80px;
-            font-weight: 900;
-            text-transform: uppercase;
-            line-height: 1.1;
-            margin-bottom: 40px;
-            letter-spacing: -2px;
-        }
-
-        .cta-section p {
-            font-size: 24px;
-            margin-bottom: 50px;
-            font-weight: 600;
-        }
-
-        .cta-final {
-            padding: 28px 60px;
-            background: #000;
-            color: #00ff88;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 24px;
-            border: 4px solid #000;
-            box-shadow: 12px 12px 0 #fff;
-            transition: all 0.2s;
-            text-transform: uppercase;
-            display: inline-block;
-        }
-
-        .cta-final:hover {
-            transform: translate(6px, 6px);
-            box-shadow: 6px 6px 0 #fff;
+            top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
         }
 
         /* Footer */
-        footer {
-            padding: 60px 0;
-            border-top: 4px solid #222;
+        footer { 
+            padding: 80px 0 0; 
+            border-top: 1px solid var(--border-subtle); 
+            text-align: center; 
+            overflow: hidden; 
+            position: relative;
         }
 
-        .footer-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-            text-align: center;
+        .big-footer-text {
+            font-weight: 800; 
+            font-size: 24vw; 
+            line-height: 0.75; 
+            letter-spacing: -0.08em; 
+            background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.02) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            user-select: none;
+            pointer-events: none;
+            width: 100%;
+            display: block;
+            margin-bottom: -4vw;
         }
 
-        footer p {
-            font-size: 16px;
-            color: #666;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+        /* Animation Keyframes */
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @keyframes pulse-glow { 0% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(139, 92, 246, 0); } 100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); } }
+        @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+        
+        .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .fade-in-up.visible { opacity: 1; transform: translateY(0); }
 
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .hero h1 {
-                font-size: 72px;
-            }
-
-            .section-title {
-                font-size: 56px;
-            }
-
-            .cta-section h2 {
-                font-size: 56px;
-            }
-
-            .world-record-banner p {
-                font-size: 22px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header-container {
-                padding: 0 20px;
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .hero {
-                padding: 80px 0 60px;
-            }
-
-            .hero-container,
-            .features-container,
-            .use-cases-container,
-            .cta-section-container,
-            .footer-container {
-                padding: 0 20px;
-            }
-
-            .hero h1 {
-                font-size: 48px;
-                letter-spacing: -2px;
-            }
-
-            .hero-description {
-                font-size: 18px;
-            }
-
-            .cta-primary,
-            .cta-secondary {
-                font-size: 16px;
-                padding: 18px 32px;
-                width: 100%;
-                text-align: center;
-            }
-
-            .section-title {
-                font-size: 40px;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .feature-card {
-                padding: 30px;
-            }
-
-            .use-cases-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-section h2 {
-                font-size: 36px;
-            }
-
-            .cta-section p {
-                font-size: 18px;
-            }
-
-            .cta-final {
-                font-size: 18px;
-                padding: 20px 40px;
-                width: 100%;
-            }
-
-            .stats-container {
-                gap: 40px;
-            }
-
-            .stat-number {
-                font-size: 48px;
-            }
-
-            .world-record-banner p {
-                font-size: 16px;
-                padding: 0 10px;
-            }
-
-            .world-record-banner .trophy {
-                font-size: 20px;
-            }
+        @media (max-width: 900px) {
+            .bento-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+            .span-2, .span-4 { grid-column: span 1; min-height: 300px; }
+            .timeline-item { flex-direction: column; gap: 10px; }
         }
     </style>
+  
 </head>
 <body>  
  <!-- Structured Data for SEO -->
@@ -591,185 +340,206 @@
         });
     </script>
     <!-- Header -->
-    <header>
-        <div class="header-container">
-            <a href="https://incandescent-gnome-e84ac4.netlify.app/" class="logo">BicoChat</a>
-            <a href="https://incandescent-gnome-e84ac4.netlify.app/" class="header-cta">Launch App</a>
-        </div>
-    </header>
-
-    <!-- World Record Banner -->
-    <div class="world-record-banner">
-        <p><span class="trophy">🏆</span> WORLD'S FASTEST AI RESPONSE TIME <span class="trophy">🏆</span></p>
+   
+    <!-- Modern Floating Navbar -->
+    <div class="nav-wrapper">
+        <nav>
+            <div class="nav-left">
+                <!-- Links removed, Dot removed -->
+                <a href="https://incandescent-gnome-e84ac4.netlify.app" class="nav-brand">Bicochat</a>
+            </div>
+            
+            <a href="https://incandescent-gnome-e84ac4.netlify.app" class="btn-nav-small">Launch App</a>
+        </nav>
     </div>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero">
-        <div class="hero-container">
-            <span class="hero-badge">⚡ Under 0.3 Seconds</span>
-            <h1>
-                CHAT SMARTER
-                <span class="highlight">IN TWO LANGUAGES</span>
-            </h1>
-            <p class="hero-description">
-                Get bilingual answers instantly. No waiting, no loading, just pure intelligence at lightning speed. Completely free.
+        <div class="hero-bg-anim"></div>
+        <div class="container fade-in-up">
+            <div class="pill mono">V2.0 LIVE ON NETLIFY</div>
+            <h1>The Interface for <br>Infinite Intelligence.</h1>
+            <p class="stagger-1">
+                More than a chatbot. An adaptive workspace with whiteboards, <br>
+                coding environments, and Meta Llama 3 reasoning.
             </p>
-            <div class="cta-group">
-                <a href="https://incandescent-gnome-e84ac4.netlify.app/" class="cta-primary">Try Free Now</a>
-                <a href="#features" class="cta-secondary">See Features</a>
+            <div class="stagger-2" style="margin-top: 40px;">
+                <a href="https://incandescent-gnome-e84ac4.netlify.app" class="btn-shimmer">
+                    Start Chatting Free <span>→</span>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="stats-container">
-            <div class="stat-item">
-                <span class="stat-number"><0.3s</span>
-                <span class="stat-label">Response Time</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">Multi</span>
-                <span class="stat-label">Languages</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">100%</span>
-                <span class="stat-label">Free Forever</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">∞</span>
-                <span class="stat-label">Possibilities</span>
-            </div>
+    <!-- Infinite Marquee -->
+    <div class="marquee-section">
+        <div class="marquee-content">
+            <span class="marquee-item">META LLAMA INSTRUCT</span>
+            <span class="marquee-item">///</span>
+            <span class="marquee-item">REAL-TIME WHITEBOARD</span>
+            <span class="marquee-item">///</span>
+            <span class="marquee-item">PDF EXPORT</span>
+            <span class="marquee-item">///</span>
+            <span class="marquee-item">ADAPTIVE PERSONAS</span>
+            <span class="marquee-item">///</span>
+            <span class="marquee-item">SECURE ENCRYPTION</span>
+            <span class="marquee-item">///</span>
+            <span class="marquee-item">META LLAMA INSTRUCT</span>
+            <span class="marquee-item">///</span>
+            <span class="marquee-item">REAL-TIME WHITEBOARD</span>
+            <span class="marquee-item">///</span>
+            <span class="marquee-item">PDF EXPORT</span>
+            <span class="marquee-item">///</span>
         </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="features-container">
-            <h2 class="section-title">POWERFUL CAPABILITIES</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-number">01</div>
-                    <h3>Language Switching</h3>
-                    <p>Start in English, switch to Spanish mid-conversation. BicoChat follows naturally without breaking context.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-number">02</div>
-                    <h3>Language Learning</h3>
-                    <p>Get instant corrections, vocabulary tips, and practice drills. Build fluency faster with real-time feedback.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-number">03</div>
-                    <h3>Instant Knowledge</h3>
-                    <p>Ask anything from science to culture. Get accurate, cited answers in seconds, not minutes.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-number">04</div>
-                    <h3>Content Creation</h3>
-                    <p>Draft emails, write stories, generate social posts. Create in both languages effortlessly.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-number">05</div>
-                    <h3>Programming Help</h3>
-                    <p>Debug code, explain algorithms, generate snippets. Technical support in any language.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-number">06</div>
-                    <h3>Smart Memory</h3>
-                    <p>Remembers your preferences and context. Every conversation gets more personalized.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Use Cases Section -->
-    <section class="use-cases">
-        <div class="use-cases-container">
-            <h2 class="section-title">WHO USES BICOCHAT</h2>
-            <div class="use-cases-grid">
-                <div class="use-case-item">
-                    <span class="use-case-tag">• Students</span>
-                    <h3>Language Learners</h3>
-                    <p>Practice conversations, get instant feedback, and build fluency faster than traditional methods.</p>
-                </div>
-                <div class="use-case-item">
-                    <span class="use-case-tag">• Business</span>
-                    <h3>Professionals</h3>
-                    <p>Draft bilingual emails, prepare for meetings, and translate on the fly for global teams.</p>
-                </div>
-                <div class="use-case-item">
-                    <span class="use-case-tag">• Education</span>
-                    <h3>Students</h3>
-                    <p>Get homework help, explain complex topics, and study in two languages simultaneously.</p>
-                </div>
-                <div class="use-case-item">
-                    <span class="use-case-tag">• Tech</span>
-                    <h3>Developers</h3>
-                    <p>Debug code, generate documentation, and get technical answers in English or Spanish.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="cta-section-container">
-            <h2>READY FOR INSTANT BILINGUAL INTELLIGENCE?</h2>
-            <p>Join thousands who trust BicoChat for lightning-fast responses.</p>
-            <a href="https://incandescent-gnome-e84ac4.netlify.app/" class="cta-final">Start Now — Free Forever</a>
-        </div>
-    </section>
-
-   <!-- Footer -->
-<footer>
-    <div class="footer-container">
-        <p>© 2025 BicoChat — World's Fastest Bilingual AI Chat Assistant</p>
-        <p style="margin-top: 20px; font-size: 14px; color: #999; display: flex; align-items: center; justify-content: center; gap: 8px;">
-           
-
-<svg height="30px" width="30px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-	 viewBox="0 0 512.001 512.001" xml:space="preserve">
-<path style="fill:#EB6836;" d="M478.384,502.897L417.767,7.133C417.269,3.061,413.811,0,409.709,0H134.766
-	c-2.529,0-4.913,1.178-6.449,3.187s-2.049,4.618-1.387,7.059l116.905,430.816c0.96,3.537,4.171,5.992,7.835,5.992h137.941
-	l7.72,57.901c0.538,4.033,3.978,7.046,8.047,7.046h64.947C475.126,512,478.967,507.664,478.384,502.897z"/>
-<path style="fill:#C74B38;" d="M417.767,7.133C417.269,3.061,413.811,0,409.709,0H134.766c-2.529,0-4.913,1.178-6.449,3.187
-	s-2.049,4.618-1.387,7.059l58.282,214.783l259.27,0.611L417.767,7.133z"/>
-<path style="fill:#F7D04A;" d="M383.314,2.738C381.773,0.997,379.559,0,377.235,0H102.292c-4.102,0-7.56,3.061-8.058,7.133
-	L33.617,502.897c-0.583,4.768,3.258,9.103,8.058,9.103h64.947c4.069,0,7.509-3.012,8.047-7.046l7.72-57.901h128.668l-7.434,55.756
-	c-0.639,4.795,3.213,9.191,8.047,9.191h64.947c4.103,0,7.56-3.061,8.058-7.133L385.292,9.103
-	C385.576,6.796,384.856,4.478,383.314,2.738z"/>
-<g>
-	<path style="fill:#F3B41B;" d="M102.292,0c-4.102,0-7.56,3.061-8.058,7.133L33.617,502.897c-0.583,4.768,3.258,9.103,8.058,9.103
-		h64.947c4.069,0,7.509-3.012,8.047-7.046l7.72-57.901h92.162L118.044,0H102.292z"/>
-	<path style="fill:#F3B41B;" d="M415.781,2.731C414.241,0.994,412.031,0,409.709,0h-33.556c-4.103,0-7.56,3.061-8.058,7.133
-		l-60.617,495.763c-0.283,2.308,0.438,4.625,1.98,6.366c1.54,1.741,3.754,2.738,6.079,2.738h34.638c4.109,0,7.571-3.07,8.06-7.151
-		L417.77,9.086C418.046,6.782,417.323,4.467,415.781,2.731z"/>
-</g>
-<g>
-	<polygon style="fill:#666666;" points="311.518,0 253.247,58.272 311.418,58.272 369.689,0 	"/>
-	<polygon style="fill:#666666;" points="218.428,0 160.156,58.272 218.327,58.272 276.599,0 	"/>
-	<polygon style="fill:#666666;" points="125.337,0 90.895,34.441 87.981,58.272 125.236,58.272 183.508,0 	"/>
-</g>
-<path style="fill:#C74B38;" d="M288.619,386.436H108.653c-8.429,0-16.138-4.262-20.623-11.399
-	c-4.485-7.138-4.977-15.933-1.318-23.527l113.122-234.812c4.429-9.194,13.854-14.567,24.029-13.695
-	c10.167,0.875,18.542,7.782,21.337,17.597l66.845,234.813c2.111,7.414,0.656,15.193-3.988,21.344
-	C303.411,382.908,296.326,386.436,288.619,386.436z M221.783,119.151c-1.781,0-5.371,0.542-7.323,4.593L101.34,358.557
-	c-1.758,3.649-0.278,6.7,0.439,7.842c0.718,1.143,2.824,3.799,6.874,3.799h179.966c2.57,0,4.931-1.176,6.478-3.226
-	c1.549-2.051,2.033-4.644,1.33-7.115l-66.845-234.813c-1.422-4.998-5.804-5.753-7.113-5.866
-	C222.294,119.164,222.06,119.151,221.783,119.151z"/>
-<g>
-	<path style="fill:#EB6836;" d="M191.067,341.518c-7.904,0-14.113-7.292-12.834-15.093l2.129-12.989
-		c1.16-7.08,7.837-11.879,14.919-10.716c7.079,1.16,11.878,7.84,10.716,14.919l-2.129,12.989
-		C202.826,336.996,197.316,341.518,191.067,341.518z"/>
-	<path style="fill:#EB6836;" d="M200.294,285.231c-7.904,0-14.113-7.292-12.834-15.093l12.422-75.772
-		c1.16-7.08,7.841-11.878,14.919-10.716c7.079,1.16,11.878,7.84,10.716,14.919l-12.422,75.772
-		C212.053,280.708,206.543,285.231,200.294,285.231z"/>
-</g>
-</svg>
-            Disclaimer: All claims and statements made on this website are for advertising and promotional purposes only and do not always represent the true nature, performance, or capabilities of the product or service.
-        </p>
     </div>
-</footer>
 
+    <!-- Features Bento Grid -->
+    <section id="features" class="features-section container">
+        <div class="section-title fade-in-up">
+            <h2 class="mono" style="font-size: 1rem; color: var(--accent-primary); margin-bottom: 10px;">CAPABILITIES</h2>
+            <h2 style="font-size: 2.5rem;">Engineered for Power Users.</h2>
+        </div>
+
+        <div class="bento-grid">
+            <div class="bento-card span-2 fade-in-up stagger-1">
+                <div>
+                    <h3>Adaptive Persona System</h3>
+                    <p style="color: var(--text-muted); margin-top: 10px;">Switch instantly between a rigorous Coder, a patient Teacher, or a casual Friend. The context shifts, but the memory stays.</p>
+                </div>
+                <div class="card-visual" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <span class="pill" style="margin: 0; background: #1e1e24;">👔 Pro</span>
+                    <span class="pill" style="margin: 0; background: #1e1e24;">🎓 Teacher</span>
+                    <span class="pill" style="margin: 0; border-color: var(--accent-primary); color: var(--accent-primary);">💻 Coder</span>
+                </div>
+            </div>
+
+            <div class="bento-card span-2 fade-in-up stagger-2">
+                <div>
+                    <h3>Visual Whiteboard</h3>
+                    <p style="color: var(--text-muted); margin-top: 10px;">Words aren't enough. Sketch diagrams, flowcharts, and wireframes directly inside the chat interface.</p>
+                </div>
+                <div class="card-visual" style="background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIvPjwvc3ZnPg==');"></div>
+            </div>
+
+            <div class="bento-card span-4 fade-in-up stagger-3" style="flex-direction: row; align-items: center; gap: 40px;">
+                <div style="flex: 1;">
+                    <h3>Developer-Grade Export</h3>
+                    <p style="color: var(--text-muted); margin-top: 10px;">Don't lose your insights. Export full conversation threads to formatted PDF, DOCX, or raw TXT for documentation.</p>
+                </div>
+                <div style="flex: 1; background: #000; padding: 20px; border-radius: 10px; border: 1px solid var(--border-subtle);">
+                    <div class="code-block">
+                        > Exporting chat_history_v2.pdf...<br>
+                        > Formatting code blocks...<br>
+                        > 100% Complete. Download Ready.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison -->
+    <section class="comparison-section">
+        <div class="container">
+            <div class="section-title fade-in-up">
+                <h2>Why Bicochat?</h2>
+                <p style="color: var(--text-muted);">Optimized for the Llama Instruct architecture.</p>
+            </div>
+            <table class="comp-table fade-in-up">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th style="color: white; font-size: 1.1rem;">Bicochat</th>
+                        <th>Standard Chatbots</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Reasoning Model</strong></td>
+                        <td style="color: var(--accent-primary);">Meta Llama Instruct</td>
+                        <td>Generic GPT-3.5</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Context Switching</strong></td>
+                        <td class="check">✔ 5+ Dedicated Modes</td>
+                        <td class="cross">Single Mode</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Visual Tools</strong></td>
+                        <td class="check">✔ Integrated Whiteboard</td>
+                        <td class="cross">Text Only</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Ownership</strong></td>
+                        <td class="check">✔ Full Export (PDF/DOCX)</td>
+                        <td class="cross">Copy-Paste Only</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Workflow -->
+    <section class="workflow-section container">
+        <div class="section-title fade-in-up">
+            <h2>Workflow Integration</h2>
+        </div>
+        <div class="timeline-item fade-in-up">
+            <div class="timeline-number">01</div>
+            <div class="timeline-content">
+                <h3>Select Your Persona</h3>
+                <p>Start by choosing the "Coder" mode for technical tasks or "Teacher" for breaking down complex topics. The system re-prompts the Llama model instantly.</p>
+            </div>
+        </div>
+        <div class="timeline-item fade-in-up">
+            <div class="timeline-number">02</div>
+            <div class="timeline-content">
+                <h3>Iterate Visually</h3>
+                <p>When text hits a wall, open the Whiteboard. Draw a system architecture or a quick mock-up, then switch back to chat to refine it.</p>
+            </div>
+        </div>
+        <div class="timeline-item fade-in-up">
+            <div class="timeline-number">03</div>
+            <div class="timeline-content">
+                <h3>Export & Ship</h3>
+                <p>Finished the session? One click exports your entire brainstorming session into a professional PDF document ready for your team.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="bottom-cta container">
+        <div class="bottom-card">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Ready to Upgrade your Workflow?</h2>
+            <p style="color: var(--text-muted); margin-bottom: 40px;">Join thousands of developers and creators using Bicochat.</p>
+            <a href="https://incandescent-gnome-e84ac4.netlify.app" class="btn-shimmer">
+                Launch Bicochat <span>→</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Updated Footer -->
+    <footer>
+        <div class="container">
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 60px; position: relative; z-index: 10;">&copy; 2025 Bicochat. Powered by Meta Llama.</p>
+        </div>
+        
+        <!-- Massive Footer Brand Name -->
+        <div class="big-footer-text">
+            Bicochat
+        </div>
+    </footer>
+
+    <!-- Scroll Animation Script -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
