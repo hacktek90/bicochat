@@ -1,545 +1,574 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BicoChat</title>
+<meta name="description" content="Chat instantly in English & Spanish with BicoChat — the world’s fastest AI response time (0.28s avg). Free, no sign-up, bilingual AI assistant for learning, coding, and more.">
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://incandescent-gnome-e84ac4.netlify.app/" />
+<meta property="og:title" content="BicoChat — World’s Fastest Bilingual AI Chat Assistant" />
+<meta property="og:description" content="Chat instantly in English & Spanish with BicoChat — the world’s fastest AI response time (0.28s avg). Free, no sign-up, bilingual AI assistant." />
+<meta property="og:image" content="https://black-ice-3dbk.onrender.com/bicochat-og.jpg" />
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://incandescent-gnome-e84ac4.netlify.app/" />
+<meta property="twitter:title" content="BicoChat — World’s Fastest Bilingual AI Chat Assistant" />
+<meta property="twitter:description" content="Chat instantly in English & Spanish with BicoChat — the world’s fastest AI response time (0.28s avg)." />
+<meta property="twitter:image" content="https://black-ice-3dbk.onrender.com/bicochat-og.jpg" />
+<!-- Canonical URL -->
+<link rel="canonical" href="https://black-ice-3dbk.onrender.com/ai-chat.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+    :root {
+        /* Deep Tech Palette */
+        --bg-deep: #030304;
+        --bg-surface: #0B0B0E;
+        --accent-primary: #3B82F6;
+        --accent-secondary: #8B5CF6;
+        --text-main: #FFFFFF;
+        --text-muted: #94A3B8;
+        --border-subtle: rgba(255, 255, 255, 0.08);
+        --gradient-mesh: radial-gradient(circle at 50% -20%, rgba(59, 130, 246, 0.15), transparent 60%);
+    }
+    * { box-sizing: border-box; outline: none; scroll-behavior: smooth; }
+    body {
+        background-color: var(--bg-deep);
+        background-image: var(--gradient-mesh);
+        color: var(--text-main);
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        line-height: 1.6;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+    }
 
-    <title>BicoChat</title>
-      <meta name="description" content="Chat instantly in English & Spanish with BicoChat — the world’s fastest AI response time (0.28s avg). Free, no sign-up, bilingual AI assistant for learning, coding, and more.">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://incandescent-gnome-e84ac4.netlify.app/" />
-    <meta property="og:title" content="BicoChat — World’s Fastest Bilingual AI Chat Assistant" />
-    <meta property="og:description" content="Chat instantly in English & Spanish with BicoChat — the world’s fastest AI response time (0.28s avg). Free, no sign-up, bilingual AI assistant." />
-    <meta property="og:image" content="https://black-ice-3dbk.onrender.com/bicochat-og.jpg" />
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://incandescent-gnome-e84ac4.netlify.app/" />
-    <meta property="twitter:title" content="BicoChat — World’s Fastest Bilingual AI Chat Assistant" />
-    <meta property="twitter:description" content="Chat instantly in English & Spanish with BicoChat — the world’s fastest AI response time (0.28s avg)." />
-    <meta property="twitter:image" content="https://black-ice-3dbk.onrender.com/bicochat-og.jpg" />
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://black-ice-3dbk.onrender.com/ai-chat.html" />
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-	 <style>
-        :root {
-            /* Deep Tech Palette */
-            --bg-deep: #030304; 
-            --bg-surface: #0B0B0E;
-            --accent-primary: #3B82F6; 
-            --accent-secondary: #8B5CF6;
-            --text-main: #FFFFFF;
-            --text-muted: #94A3B8;
-            --border-subtle: rgba(255, 255, 255, 0.08);
-            --gradient-mesh: radial-gradient(circle at 50% -20%, rgba(59, 130, 246, 0.15), transparent 60%);
-        }
+    /* --- LIQUID GLASS NAVBAR STYLES --- */
+    .nav-wrapper {
+        position: fixed;
+        top: 20px;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        z-index: 1000;
+        padding: 0 20px;
+    }
 
-        * { box-sizing: border-box; outline: none; scroll-behavior: smooth; }
+    .liquid-nav-container {
+        position: relative;
+        width: 100%;
+        max-width: 900px;
+        height: 64px; /* Fixed height for distortion calculation */
+        border-radius: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* Deep shadow to emphasize "floating" object */
+        box-shadow: 0 10px 40px rgba(0,0,0,0.5), 0 0 20px rgba(255,255,255,0.05);
+        transition: transform 0.3s ease;
+    }
 
-        body {
-            background-color: var(--bg-deep);
-            background-image: var(--gradient-mesh);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+    .liquid-nav-container:hover {
+        transform: scale(1.01);
+    }
 
-        /* --- Modern Floating Navbar --- */
-        .nav-wrapper {
-            position: fixed;
-            top: 20px;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            z-index: 1000;
-            padding: 0 20px;
-        }
+    .liquid-layer {
+        position: absolute;
+        inset: 0;
+        border-radius: 100px;
+        pointer-events: none; /* Let clicks pass through effects */
+    }
 
-        nav {
-            background: rgba(10, 10, 12, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 100px; /* Pill shape */
-            padding: 12px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            max-width: 900px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1); /* Inner light */
-            transition: all 0.3s ease;
-        }
+    /* Layer 1: The Distortion Effect */
+    .layer-effect {
+        z-index: 0;
+        backdrop-filter: blur(4px);
+        filter: url(#glass-distortion);
+        overflow: hidden;
+    }
 
-        /* Logo Area */
-        .nav-left { display: flex; align-items: center; gap: 30px; }
-        
-        .nav-brand { 
-            font-weight: 700; 
-            font-size: 1.1rem; 
-            color: white; 
-            text-decoration: none; 
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            /* No margin needed since dot is gone */
-            margin-left: 0; 
-        }
-        
-        /* DOT REMOVED: .nav-brand::before rule deleted */
+    /* Layer 2: The White Tint */
+    .layer-tint {
+        z-index: 1;
+        background: rgba(255, 255, 255, 0.08);
+    }
 
-        /* Modern Small Button */
-        .btn-nav-small {
-            background: #FFFFFF;
-            color: black;
-            font-weight: 600;
-            font-size: 0.9rem;
-            padding: 8px 20px;
-            border-radius: 100px;
-            text-decoration: none;
-            transition: transform 0.2s;
-        }
-        
-        .btn-nav-small:hover { transform: scale(1.05); }
+    /* Layer 3: The Shine/Borders */
+    .layer-shine {
+        z-index: 2;
+        box-shadow: 
+            inset 2px 2px 1px 0 rgba(255, 255, 255, 0.2),
+            inset -1px -1px 1px 1px rgba(255, 255, 255, 0.1);
+    }
 
-        /* --- Hero --- */
-        .hero {
-            padding: 220px 0 120px; 
-            text-align: center;
-            position: relative;
-        }
+    /* Layer 4: The Actual Content */
+    .nav-content {
+        z-index: 3;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 24px;
+    }
 
-        .hero-bg-anim {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            filter: blur(60px);
-            z-index: -1;
-            animation: pulse-glow 8s infinite;
-        }
+    /* Logo Area */
+    .nav-left { display: flex; align-items: center; gap: 30px; }
+    .nav-brand {
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: white;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-left: 0;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Better contrast on glass */
+    }
 
-        .hero h1 {
-            font-size: clamp(3rem, 5vw, 5rem);
-            line-height: 1.1;
-            margin-bottom: 24px;
-            background: linear-gradient(180deg, #FFFFFF 0%, #A5B4FC 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    /* Modern Small Button */
+    .btn-nav-small {
+        background: #FFFFFF;
+        color: black;
+        font-weight: 600;
+        font-size: 0.9rem;
+        padding: 8px 20px;
+        border-radius: 100px;
+        text-decoration: none;
+        transition: transform 0.2s;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .btn-nav-small:hover { transform: scale(1.05); }
 
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto 40px;
-        }
+    /* --- Hero --- */
+    .hero {
+        padding: 220px 0 120px;
+        text-align: center;
+        position: relative;
+    }
+    .hero-bg-anim {
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        filter: blur(60px);
+        z-index: -1;
+        animation: pulse-glow 8s infinite;
+    }
+    .hero h1 {
+        font-size: clamp(3rem, 5vw, 5rem);
+        line-height: 1.1;
+        margin-bottom: 24px;
+        background: linear-gradient(180deg, #FFFFFF 0%, #A5B4FC 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+        font-size: 1.25rem;
+        color: var(--text-muted);
+        max-width: 600px;
+        margin: 0 auto 40px;
+    }
 
-        /* Rest of Styles */
-        .pill {
-            background: rgba(139, 92, 246, 0.1);
-            color: var(--accent-secondary);
-            border: 1px solid rgba(139, 92, 246, 0.2);
-            padding: 6px 12px;
-            border-radius: 100px;
-            display: inline-block;
-            margin-bottom: 24px;
-        }
-
-        .btn-shimmer {
-            background: #FFFFFF;
-            color: #000000;
-            padding: 16px 40px;
-            border-radius: 100px;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            box-shadow: 0 0 20px rgba(255,255,255,0.15);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid transparent;
-        }
-
-        .btn-shimmer::after {
-            content: "";
-            position: absolute;
-            top: 0; left: 0;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
-            transform: skewX(-20deg) translateX(-150%);
-            transition: none;
-        }
-        
-        .btn-shimmer:hover::after { animation: shimmer 0.8s ease-in-out; }
-        .btn-shimmer:hover { transform: scale(1.03); box-shadow: 0 0 40px rgba(255,255,255,0.4); }
-        .btn-shimmer span { transition: transform 0.2s; }
-        .btn-shimmer:hover span { transform: translateX(3px); }
-
-        .marquee-section { padding: 40px 0; border-bottom: 1px solid var(--border-subtle); overflow: hidden; background: var(--bg-surface); }
-        .marquee-content { display: flex; gap: 60px; animation: scroll 20s linear infinite; width: max-content; opacity: 0.5; }
-        .marquee-item { font-family: 'JetBrains Mono', monospace; color: var(--text-muted); font-weight: 600; }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-        .features-section { padding: 120px 0; }
-        .section-title { text-align: center; margin-bottom: 80px; }
-        .section-title h2 { font-size: 2.5rem; margin-bottom: 16px; }
-        
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(2, 350px);
-            gap: 24px;
-        }
-
-        .bento-card {
-            background: var(--bg-glass);
-            border: 1px solid var(--border-subtle);
-            border-radius: 24px;
-            padding: 32px;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: border-color 0.3s;
-        }
-        .bento-card:hover { border-color: var(--border-active); background: rgba(255, 255, 255, 0.05); }
-        .span-2 { grid-column: span 2; }
-        .span-4 { grid-column: span 4; }
-        
-        .card-visual {
-            height: 150px;
-            background: rgba(0,0,0,0.3);
-            border-radius: 12px;
-            margin-top: 20px;
-            border: 1px solid var(--border-subtle);
-        }
-
-        .code-block {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--accent-primary);
-            padding: 16px;
-            opacity: 0.8;
-        }
-
-        .workflow-section { padding: 120px 0; }
-        .timeline-item { display: flex; gap: 40px; margin-bottom: 80px; align-items: flex-start; }
-        .timeline-number { font-size: 4rem; font-weight: 700; color: rgba(255, 255, 255, 0.05); line-height: 1; }
-        .timeline-content h3 { font-size: 1.5rem; margin-bottom: 12px; color: white; }
-        .timeline-content p { color: var(--text-muted); }
-
-        .comparison-section { padding: 100px 0; background: var(--bg-surface); border-top: 1px solid var(--border-subtle); }
-        .comp-table { width: 100%; border-collapse: collapse; margin-top: 40px; }
-        .comp-table th, .comp-table td { text-align: left; padding: 20px; border-bottom: 1px solid var(--border-subtle); }
-        .comp-table th { color: var(--text-muted); font-weight: 500; }
-        .check { color: var(--accent-secondary); }
-        .cross { color: #555; }
-
-        .bottom-cta { text-align: center; padding: 100px 0; }
-        .bottom-card {
-            background: linear-gradient(180deg, var(--bg-surface), var(--bg-deep));
-            padding: 60px;
-            border-radius: 30px;
-            border: 1px solid var(--border-subtle);
-            position: relative;
-            overflow: hidden;
-        }
-        .bottom-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-        }
-
-        /* Footer */
-        footer { 
-            padding: 80px 0 0; 
-            border-top: 1px solid var(--border-subtle); 
-            text-align: center; 
-            overflow: hidden; 
-            position: relative;
-        }
-
-        .big-footer-text {
-            font-weight: 800; 
-            font-size: 24vw; 
-            line-height: 0.75; 
-            letter-spacing: -0.08em; 
-            background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.02) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            user-select: none;
-            pointer-events: none;
-            width: 100%;
-            display: block;
-            margin-bottom: -4vw;
-        }
-
-        /* Animation Keyframes */
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        @keyframes pulse-glow { 0% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(139, 92, 246, 0); } 100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); } }
-        @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
-        
-        .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-        .fade-in-up.visible { opacity: 1; transform: translateY(0); }
-
-        @media (max-width: 900px) {
-            .bento-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
-            .span-2, .span-4 { grid-column: span 1; min-height: 300px; }
-            .timeline-item { flex-direction: column; gap: 10px; }
-        }
-    </style>
-  
+    /* Rest of Styles */
+    .pill {
+        background: rgba(139, 92, 246, 0.1);
+        color: var(--accent-secondary);
+        border: 1px solid rgba(139, 92, 246, 0.2);
+        padding: 6px 12px;
+        border-radius: 100px;
+        display: inline-block;
+        margin-bottom: 24px;
+    }
+    .btn-shimmer {
+        background: #FFFFFF;
+        color: #000000;
+        padding: 16px 40px;
+        border-radius: 100px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        box-shadow: 0 0 20px rgba(255,255,255,0.15);
+        position: relative;
+        overflow: hidden;
+        border: 1px solid transparent;
+    }
+    .btn-shimmer::after {
+        content: "";
+        position: absolute;
+        top: 0; left: 0;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+        transform: skewX(-20deg) translateX(-150%);
+        transition: none;
+    }
+    .btn-shimmer:hover::after { animation: shimmer 0.8s ease-in-out; }
+    .btn-shimmer:hover { transform: scale(1.03); box-shadow: 0 0 40px rgba(255,255,255,0.4); }
+    .btn-shimmer span { transition: transform 0.2s; }
+    .btn-shimmer:hover span { transform: translateX(3px); }
+    .marquee-section { padding: 40px 0; border-bottom: 1px solid var(--border-subtle); overflow: hidden; background: var(--bg-surface); }
+    .marquee-content { display: flex; gap: 60px; animation: scroll 20s linear infinite; width: max-content; opacity: 0.5; }
+    .marquee-item { font-family: 'JetBrains Mono', monospace; color: var(--text-muted); font-weight: 600; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .features-section { padding: 120px 0; }
+    .section-title { text-align: center; margin-bottom: 80px; }
+    .section-title h2 { font-size: 2.5rem; margin-bottom: 16px; }
+    .bento-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 350px);
+        gap: 24px;
+    }
+    .bento-card {
+        background: var(--bg-glass);
+        border: 1px solid var(--border-subtle);
+        border-radius: 24px;
+        padding: 32px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: border-color 0.3s;
+    }
+    .bento-card:hover { border-color: var(--border-active); background: rgba(255, 255, 255, 0.05); }
+    .span-2 { grid-column: span 2; }
+    .span-4 { grid-column: span 4; }
+    .card-visual {
+        height: 150px;
+        background: rgba(0,0,0,0.3);
+        border-radius: 12px;
+        margin-top: 20px;
+        border: 1px solid var(--border-subtle);
+    }
+    .code-block {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.8rem;
+        color: var(--accent-primary);
+        padding: 16px;
+        opacity: 0.8;
+    }
+    .workflow-section { padding: 120px 0; }
+    .timeline-item { display: flex; gap: 40px; margin-bottom: 80px; align-items: flex-start; }
+    .timeline-number { font-size: 4rem; font-weight: 700; color: rgba(255, 255, 255, 0.05); line-height: 1; }
+    .timeline-content h3 { font-size: 1.5rem; margin-bottom: 12px; color: white; }
+    .timeline-content p { color: var(--text-muted); }
+    .comparison-section { padding: 100px 0; background: var(--bg-surface); border-top: 1px solid var(--border-subtle); }
+    .comp-table { width: 100%; border-collapse: collapse; margin-top: 40px; }
+    .comp-table th, .comp-table td { text-align: left; padding: 20px; border-bottom: 1px solid var(--border-subtle); }
+    .comp-table th { color: var(--text-muted); font-weight: 500; }
+    .check { color: var(--accent-secondary); }
+    .cross { color: #555; }
+    .bottom-cta { text-align: center; padding: 100px 0; }
+    .bottom-card {
+        background: linear-gradient(180deg, var(--bg-surface), var(--bg-deep));
+        padding: 60px;
+        border-radius: 30px;
+        border: 1px solid var(--border-subtle);
+        position: relative;
+        overflow: hidden;
+    }
+    .bottom-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    }
+    /* Footer */
+    footer {
+        padding: 80px 0 0;
+        border-top: 1px solid var(--border-subtle);
+        text-align: center;
+        overflow: hidden;
+        position: relative;
+    }
+    .big-footer-text {
+        font-weight: 800;
+        font-size: 24vw;
+        line-height: 0.75;
+        letter-spacing: -0.08em;
+        background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.02) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        user-select: none;
+        pointer-events: none;
+        width: 100%;
+        display: block;
+        margin-bottom: -4vw;
+    }
+    /* Animation Keyframes */
+    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    @keyframes pulse-glow { 0% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(139, 92, 246, 0); } 100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); } }
+    @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+    .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+    .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+    @media (max-width: 900px) {
+        .bento-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+        .span-2, .span-4 { grid-column: span 1; min-height: 300px; }
+        .timeline-item { flex-direction: column; gap: 10px; }
+    }
+</style>
 </head>
-<body>  
- <!-- Structured Data for SEO -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "BicoChat",
-      "applicationCategory": "AI Chat Assistant",
-      "operatingSystem": "Web",
-      "offers": {
+<body>
+
+<!-- SVG FILTER (The magic sauce for Liquid Glass) -->
+<svg style="display: none">
+    <filter id="glass-distortion" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+        <feTurbulence type="fractalNoise" baseFrequency="0.01 0.01" numOctaves="1" seed="5" result="turbulence" />
+        <feComponentTransfer in="turbulence" result="mapped">
+            <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
+            <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
+            <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
+        </feComponentTransfer>
+        <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
+        <feSpecularLighting in="softMap" surfaceScale="5" specularConstant="1" specularExponent="100" lighting-color="white" result="specLight">
+            <fePointLight x="-200" y="-200" z="300" />
+        </feSpecularLighting>
+        <feComposite in="specLight" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litImage" />
+        <feDisplacementMap in="SourceGraphic" in2="softMap" scale="150" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+</svg>
+
+<!-- Structured Data for SEO -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "BicoChat",
+    "applicationCategory": "AI Chat Assistant",
+    "operatingSystem": "Web",
+    "offers": {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD"
-      },
-      "description": "World’s fastest bilingual AI chat assistant with 0.28s average response time. Supports English and Spanish with no sign-up required.",
-      "url": "https://black-ice-3dbk.onrender.com/ai-chat.html",
-      "screenshot": "https://black-ice-3dbk.onrender.com/bicochat-screenshot.jpg"
-    }
-    </script>
-<!-- Mobile Redirect Script (as requested) -->
-    <script>
-        // Device detection and redirect only for mobile
-        document.addEventListener("DOMContentLoaded", function() {
-            if (/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                // Redirect mobile users to mobile-specific page
-                window.location.href = "mobile.html";
-            }
-            // Desktop users will stay on this page
-        });
-    </script>
-    <!-- Header -->
-   
-    <!-- Modern Floating Navbar -->
-    <div class="nav-wrapper">
-        <nav>
+    },
+    "description": "World’s fastest bilingual AI chat assistant with 0.28s average response time. Supports English and Spanish with no sign-up required.",
+    "url": "https://black-ice-3dbk.onrender.com/ai-chat.html",
+    "screenshot": "https://black-ice-3dbk.onrender.com/bicochat-screenshot.jpg"
+}
+</script>
+
+<!-- Mobile Redirect Script -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            window.location.href = "mobile.html";
+        }
+    });
+</script>
+
+<!-- LIQUID GLASS NAVBAR -->
+<div class="nav-wrapper">
+    <div class="liquid-nav-container">
+        <!-- Liquid Layers -->
+        <div class="liquid-layer layer-effect"></div>
+        <div class="liquid-layer layer-tint"></div>
+        <div class="liquid-layer layer-shine"></div>
+        
+        <!-- Content Layer -->
+        <div class="nav-content">
             <div class="nav-left">
-                <!-- Links removed, Dot removed -->
                 <a href="https://incandescent-gnome-e84ac4.netlify.app" class="nav-brand">Bicochat</a>
             </div>
-            
             <a href="https://incandescent-gnome-e84ac4.netlify.app" class="btn-nav-small">Launch App</a>
-        </nav>
-    </div>
-
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-bg-anim"></div>
-        <div class="container fade-in-up">
-            <div class="pill mono">V2.0 LIVE ON NETLIFY</div>
-            <h1>The Interface for <br>Infinite Intelligence.</h1>
-            <p class="stagger-1">
-                More than a chatbot. An adaptive workspace with whiteboards, <br>
-                coding environments, and Meta Llama 3 reasoning.
-            </p>
-            <div class="stagger-2" style="margin-top: 40px;">
-                <a href="https://incandescent-gnome-e84ac4.netlify.app" class="btn-shimmer">
-                    Start Chatting Free <span>→</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Infinite Marquee -->
-    <div class="marquee-section">
-        <div class="marquee-content">
-            <span class="marquee-item">META LLAMA INSTRUCT</span>
-            <span class="marquee-item">///</span>
-            <span class="marquee-item">REAL-TIME WHITEBOARD</span>
-            <span class="marquee-item">///</span>
-            <span class="marquee-item">PDF EXPORT</span>
-            <span class="marquee-item">///</span>
-            <span class="marquee-item">ADAPTIVE PERSONAS</span>
-            <span class="marquee-item">///</span>
-            <span class="marquee-item">SECURE ENCRYPTION</span>
-            <span class="marquee-item">///</span>
-            <span class="marquee-item">META LLAMA INSTRUCT</span>
-            <span class="marquee-item">///</span>
-            <span class="marquee-item">REAL-TIME WHITEBOARD</span>
-            <span class="marquee-item">///</span>
-            <span class="marquee-item">PDF EXPORT</span>
-            <span class="marquee-item">///</span>
         </div>
     </div>
+</div>
 
-    <!-- Features Bento Grid -->
-    <section id="features" class="features-section container">
-        <div class="section-title fade-in-up">
-            <h2 class="mono" style="font-size: 1rem; color: var(--accent-primary); margin-bottom: 10px;">CAPABILITIES</h2>
-            <h2 style="font-size: 2.5rem;">Engineered for Power Users.</h2>
-        </div>
-
-        <div class="bento-grid">
-            <div class="bento-card span-2 fade-in-up stagger-1">
-                <div>
-                    <h3>Adaptive Persona System</h3>
-                    <p style="color: var(--text-muted); margin-top: 10px;">Switch instantly between a rigorous Coder, a patient Teacher, or a casual Friend. The context shifts, but the memory stays.</p>
-                </div>
-                <div class="card-visual" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-                    <span class="pill" style="margin: 0; background: #1e1e24;">👔 Pro</span>
-                    <span class="pill" style="margin: 0; background: #1e1e24;">🎓 Teacher</span>
-                    <span class="pill" style="margin: 0; border-color: var(--accent-primary); color: var(--accent-primary);">💻 Coder</span>
-                </div>
-            </div>
-
-            <div class="bento-card span-2 fade-in-up stagger-2">
-                <div>
-                    <h3>Visual Whiteboard</h3>
-                    <p style="color: var(--text-muted); margin-top: 10px;">Words aren't enough. Sketch diagrams, flowcharts, and wireframes directly inside the chat interface.</p>
-                </div>
-                <div class="card-visual" style="background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIvPjwvc3ZnPg==');"></div>
-            </div>
-
-            <div class="bento-card span-4 fade-in-up stagger-3" style="flex-direction: row; align-items: center; gap: 40px;">
-                <div style="flex: 1;">
-                    <h3>Developer-Grade Export</h3>
-                    <p style="color: var(--text-muted); margin-top: 10px;">Don't lose your insights. Export full conversation threads to formatted PDF, DOCX, or raw TXT for documentation.</p>
-                </div>
-                <div style="flex: 1; background: #000; padding: 20px; border-radius: 10px; border: 1px solid var(--border-subtle);">
-                    <div class="code-block">
-                        > Exporting chat_history_v2.pdf...<br>
-                        > Formatting code blocks...<br>
-                        > 100% Complete. Download Ready.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Comparison -->
-    <section class="comparison-section">
-        <div class="container">
-            <div class="section-title fade-in-up">
-                <h2>Why Bicochat?</h2>
-                <p style="color: var(--text-muted);">Optimized for the Llama Instruct architecture.</p>
-            </div>
-            <table class="comp-table fade-in-up">
-                <thead>
-                    <tr>
-                        <th>Feature</th>
-                        <th style="color: white; font-size: 1.1rem;">Bicochat</th>
-                        <th>Standard Chatbots</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Reasoning Model</strong></td>
-                        <td style="color: var(--accent-primary);">Meta Llama Instruct</td>
-                        <td>Generic GPT-3.5</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Context Switching</strong></td>
-                        <td class="check">✔ 5+ Dedicated Modes</td>
-                        <td class="cross">Single Mode</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Visual Tools</strong></td>
-                        <td class="check">✔ Integrated Whiteboard</td>
-                        <td class="cross">Text Only</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Data Ownership</strong></td>
-                        <td class="check">✔ Full Export (PDF/DOCX)</td>
-                        <td class="cross">Copy-Paste Only</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <!-- Workflow -->
-    <section class="workflow-section container">
-        <div class="section-title fade-in-up">
-            <h2>Workflow Integration</h2>
-        </div>
-        <div class="timeline-item fade-in-up">
-            <div class="timeline-number">01</div>
-            <div class="timeline-content">
-                <h3>Select Your Persona</h3>
-                <p>Start by choosing the "Coder" mode for technical tasks or "Teacher" for breaking down complex topics. The system re-prompts the Llama model instantly.</p>
-            </div>
-        </div>
-        <div class="timeline-item fade-in-up">
-            <div class="timeline-number">02</div>
-            <div class="timeline-content">
-                <h3>Iterate Visually</h3>
-                <p>When text hits a wall, open the Whiteboard. Draw a system architecture or a quick mock-up, then switch back to chat to refine it.</p>
-            </div>
-        </div>
-        <div class="timeline-item fade-in-up">
-            <div class="timeline-number">03</div>
-            <div class="timeline-content">
-                <h3>Export & Ship</h3>
-                <p>Finished the session? One click exports your entire brainstorming session into a professional PDF document ready for your team.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Bottom CTA -->
-    <section class="bottom-cta container">
-        <div class="bottom-card">
-            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Ready to Upgrade your Workflow?</h2>
-            <p style="color: var(--text-muted); margin-bottom: 40px;">Join thousands of developers and creators using Bicochat.</p>
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-bg-anim"></div>
+    <div class="container fade-in-up">
+        <div class="pill mono">V2.0 LIVE ON NETLIFY</div>
+        <h1>The Interface for <br>Infinite Intelligence.</h1>
+        <p class="stagger-1">
+            More than a chatbot. An adaptive workspace with whiteboards, <br>
+            coding environments, and Meta Llama 3 reasoning.
+        </p>
+        <div class="stagger-2" style="margin-top: 40px;">
             <a href="https://incandescent-gnome-e84ac4.netlify.app" class="btn-shimmer">
-                Launch Bicochat <span>→</span>
+                Start Chatting Free <span>→</span>
             </a>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Updated Footer -->
-    <footer>
-        <div class="container">
-            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 60px; position: relative; z-index: 10;">&copy; 2025 Bicochat. Powered by Meta Llama.</p>
+<!-- Infinite Marquee -->
+<div class="marquee-section">
+    <div class="marquee-content">
+        <span class="marquee-item">META LLAMA INSTRUCT</span>
+        <span class="marquee-item">///</span>
+        <span class="marquee-item">REAL-TIME WHITEBOARD</span>
+        <span class="marquee-item">///</span>
+        <span class="marquee-item">PDF EXPORT</span>
+        <span class="marquee-item">///</span>
+        <span class="marquee-item">ADAPTIVE PERSONAS</span>
+        <span class="marquee-item">///</span>
+        <span class="marquee-item">SECURE ENCRYPTION</span>
+        <span class="marquee-item">///</span>
+        <span class="marquee-item">META LLAMA INSTRUCT</span>
+        <span class="marquee-item">///</span>
+        <span class="marquee-item">REAL-TIME WHITEBOARD</span>
+        <span class="marquee-item">///</span>
+        <span class="marquee-item">PDF EXPORT</span>
+        <span class="marquee-item">///</span>
+    </div>
+</div>
+
+<!-- Features Bento Grid -->
+<section id="features" class="features-section container">
+    <div class="section-title fade-in-up">
+        <h2 class="mono" style="font-size: 1rem; color: var(--accent-primary); margin-bottom: 10px;">CAPABILITIES</h2>
+        <h2 style="font-size: 2.5rem;">Engineered for Power Users.</h2>
+    </div>
+    <div class="bento-grid">
+        <div class="bento-card span-2 fade-in-up stagger-1">
+            <div>
+                <h3>Adaptive Persona System</h3>
+                <p style="color: var(--text-muted); margin-top: 10px;">Switch instantly between a rigorous Coder, a patient Teacher, or a casual Friend. The context shifts, but the memory stays.</p>
+            </div>
+            <div class="card-visual" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                <span class="pill" style="margin: 0; background: #1e1e24;">👔 Pro</span>
+                <span class="pill" style="margin: 0; background: #1e1e24;">🎓 Teacher</span>
+                <span class="pill" style="margin: 0; border-color: var(--accent-primary); color: var(--accent-primary);">💻 Coder</span>
+            </div>
         </div>
-        
-        <!-- Massive Footer Brand Name -->
-        <div class="big-footer-text">
-            Bicochat
+        <div class="bento-card span-2 fade-in-up stagger-2">
+            <div>
+                <h3>Visual Whiteboard</h3>
+                <p style="color: var(--text-muted); margin-top: 10px;">Words aren't enough. Sketch diagrams, flowcharts, and wireframes directly inside the chat interface.</p>
+            </div>
+            <div class="card-visual" style="background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIvPjwvc3ZnPg==');"></div>
         </div>
-    </footer>
+        <div class="bento-card span-4 fade-in-up stagger-3" style="flex-direction: row; align-items: center; gap: 40px;">
+            <div style="flex: 1;">
+                <h3>Developer-Grade Export</h3>
+                <p style="color: var(--text-muted); margin-top: 10px;">Don't lose your insights. Export full conversation threads to formatted PDF, DOCX, or raw TXT for documentation.</p>
+            </div>
+            <div style="flex: 1; background: #000; padding: 20px; border-radius: 10px; border: 1px solid var(--border-subtle);">
+                <div class="code-block">
+                    > Exporting chat_history_v2.pdf...<br>
+                    > Formatting code blocks...<br>
+                    > 100% Complete. Download Ready.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <!-- Scroll Animation Script -->
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
+<!-- Comparison -->
+<section class="comparison-section">
+    <div class="container">
+        <div class="section-title fade-in-up">
+            <h2>Why Bicochat?</h2>
+            <p style="color: var(--text-muted);">Optimized for the Llama Instruct architecture.</p>
+        </div>
+        <table class="comp-table fade-in-up">
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th style="color: white; font-size: 1.1rem;">Bicochat</th>
+                    <th>Standard Chatbots</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Reasoning Model</strong></td>
+                    <td style="color: var(--accent-primary);">Meta Llama Instruct</td>
+                    <td>Generic GPT-3.5</td>
+                </tr>
+                <tr>
+                    <td><strong>Context Switching</strong></td>
+                    <td class="check">✔ 5+ Dedicated Modes</td>
+                    <td class="cross">Single Mode</td>
+                </tr>
+                <tr>
+                    <td><strong>Visual Tools</strong></td>
+                    <td class="check">✔ Integrated Whiteboard</td>
+                    <td class="cross">Text Only</td>
+                </tr>
+                <tr>
+                    <td><strong>Data Ownership</strong></td>
+                    <td class="check">✔ Full Export (PDF/DOCX)</td>
+                    <td class="cross">Copy-Paste Only</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
 
-        document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
-    </script>
+<!-- Workflow -->
+<section class="workflow-section container">
+    <div class="section-title fade-in-up">
+        <h2>Workflow Integration</h2>
+    </div>
+    <div class="timeline-item fade-in-up">
+        <div class="timeline-number">01</div>
+        <div class="timeline-content">
+            <h3>Select Your Persona</h3>
+            <p>Start by choosing the "Coder" mode for technical tasks or "Teacher" for breaking down complex topics. The system re-prompts the Llama model instantly.</p>
+        </div>
+    </div>
+    <div class="timeline-item fade-in-up">
+        <div class="timeline-number">02</div>
+        <div class="timeline-content">
+            <h3>Iterate Visually</h3>
+            <p>When text hits a wall, open the Whiteboard. Draw a system architecture or a quick mock-up, then switch back to chat to refine it.</p>
+        </div>
+    </div>
+    <div class="timeline-item fade-in-up">
+        <div class="timeline-number">03</div>
+        <div class="timeline-content">
+            <h3>Export & Ship</h3>
+            <p>Finished the session? One click exports your entire brainstorming session into a professional PDF document ready for your team.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Bottom CTA -->
+<section class="bottom-cta container">
+    <div class="bottom-card">
+        <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Ready to Upgrade your Workflow?</h2>
+        <p style="color: var(--text-muted); margin-bottom: 40px;">Join thousands of developers and creators using Bicochat.</p>
+        <a href="https://incandescent-gnome-e84ac4.netlify.app" class="btn-shimmer">
+            Launch Bicochat <span>→</span>
+        </a>
+    </div>
+</section>
+
+<!-- Updated Footer -->
+<footer>
+    <div class="container">
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 60px; position: relative; z-index: 10;">&copy; 2025 Bicochat. Powered by Meta Llama.</p>
+    </div>
+    <!-- Massive Footer Brand Name -->
+    <div class="big-footer-text">
+        Bicochat
+    </div>
+</footer>
+
+<!-- Scroll Animation Script -->
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
